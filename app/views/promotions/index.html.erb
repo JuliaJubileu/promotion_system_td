@@ -1,0 +1,8 @@
+<% @promotions.each do |promotion| %>
+    <%= promotion.name %>
+    <%= promotion.description %>
+    <%= promotion.code %>
+    <%= number_to_percentage(promotion.discount_rate, precision: 2, separator: ',') %>
+    <%= promotion.coupon_quantity %>
+    <%= promotion.expiration_date %>
+<% end %>
