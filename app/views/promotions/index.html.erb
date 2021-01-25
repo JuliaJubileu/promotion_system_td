@@ -1,8 +1,13 @@
-<% @promotions.each do |promotion| %>
-    <%= promotion.name %>
-    <%= promotion.description %>
-    <%= promotion.code %>
-    <%= number_to_percentage(promotion.discount_rate, precision: 2, separator: ',') %>
-    <%= promotion.coupon_quantity %>
-    <%= promotion.expiration_date %>
+<% if @promotions.empty? %>
+  <%= "Nenhuma promoção cadastrada" %>
+<% else %>
+  <% @promotions.each do |promotion| %>
+      <%= link_to promotion.name, promotion %>
+      <%= promotion.description %>
+      <%= promotion.code %>
+      <%= number_to_percentage(promotion.discount_rate, precision: 2, separator: ',') %>
+      <%= promotion.coupon_quantity %>
+      <%= promotion.expiration_date %>
+  <% end %>
 <% end %>
+<%= link_to 'Voltar', root_path %>
