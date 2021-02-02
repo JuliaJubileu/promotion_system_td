@@ -17,12 +17,14 @@ class PromotionsController < ApplicationController
         if @promotion.save
             redirect_to @promotion
         else
-            render :new
+            render 'new'
         end
     end
 
     private
     def promotion_params
-        params.require(:promotion).permit(:name, :description, :code, :discount_rate, :coupon_quantity, :expiration_date)
+        params.require(:promotion).permit(:name, :description, :code, 
+                                          :discount_rate, :coupon_quantity, 
+                                          :expiration_date)
     end
 end
