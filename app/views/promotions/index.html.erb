@@ -1,13 +1,28 @@
 <% if @promotions.empty? %>
-  <%= "Nenhuma promoção cadastrada" %>
+  <%= 'Nenhuma promoção cadastrada' %>
 <% else %>
   <% @promotions.each do |promotion| %>
-      <%= link_to promotion.name, promotion %>
-      <%= promotion.description %>
-      <%= promotion.code %>
-      <%= number_to_percentage(promotion.discount_rate, precision: 2, separator: ',') %>
-      <%= promotion.coupon_quantity %>
-      <%= promotion.expiration_date %>
+    <dl>
+      <dt> Nome: </dt>
+      <dd> <%= link_to promotion.name, promotion %> </dd>
+
+      <dt> Descrição: </dt>
+      <dd> <%= promotion.description %> </dd>
+      
+      <dt> Código: </dt>
+      <dd> <%= promotion.code %> </dd>
+      
+      <dt> Desconto: </dt>
+      <dd> <%= number_to_percentage(promotion.discount_rate, precision: 2, separator: ',') %> </dd>
+      
+      <dt> Quantidade de cupons: </dt>
+      <dd> <%= promotion.coupon_quantity %> </dd>
+      
+      <dt> Data de término: </dt>
+      <dd> <%= promotion.expiration_date %> </dd>
+    </dl>
   <% end %>
 <% end %>
+
+<%= link_to 'Registrar uma promoção', new_promotion_path %>
 <%= link_to 'Voltar', root_path %>
