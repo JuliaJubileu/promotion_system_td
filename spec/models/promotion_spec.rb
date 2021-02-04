@@ -44,4 +44,5 @@ describe Promotion do
       expect(promotion.errors[:code]).to include('já está em uso')
     end
   end
+  context 'Admin generates'
 end

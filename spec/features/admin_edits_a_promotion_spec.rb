@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin edits a promotion' do
+xfeature 'Admin edits a promotion' do
   scenario 'from index page' do
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
