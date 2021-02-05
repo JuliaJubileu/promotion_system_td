@@ -8,7 +8,7 @@ xfeature 'Admin edits a promotion' do
 
     visit root_path
     click_on 'Promoções'
-    click_on 'Natal'
+    click_on promotion.name
 
     expect(current_path).to eq(promotion_path(Promotion.last))
     expect(page).to have_link('Editar Promoção')
