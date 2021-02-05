@@ -1,6 +1,6 @@
 <% if flash[:notice] %>
   <div>
-    <p><% flash[:notice] %></p>
+    <p><%= flash[:notice] %></p>
   </div>
 <% end %>
 
@@ -21,7 +21,7 @@
 <dd><%= @promotion.coupon_quantity %></dd>
 </dl>
 
-<%= link_to 'Gerar Cupons', generate_coupons_promotion_path(@promotion), method: :post %>
+<%= link_to 'Gerar cupons', generate_coupons_promotion_path(@promotion), method: :post %>
 
 <% @promotion.coupons.each do |coupon| %>
     <%= coupon.code %>
