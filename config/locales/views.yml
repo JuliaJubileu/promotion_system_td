@@ -1,0 +1,7 @@
+pt-BR: 
+  enabled: 'Ativo'
+  disabled: 'Desativado'
+  promotions: 
+    show: 
+      enabled: 'Ativo'
+      disabled: 'Desativado'

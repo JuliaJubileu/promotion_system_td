@@ -12,7 +12,32 @@ feature 'Admin disables coupon' do
         click_on promotion.name 
         click_on 'Desativar Cupom'
 
-        expect(page).to have_content('Cupom ABC0001 inativo')
+        coupon.reload
+        expect(page).to have_content('Cupom ABC0001 - Desativado')
+        expect(coupon).to be_disabled
     
+    end
+    scenario 'Does not see button' do
+        promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+        code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+        expiration_date: '22/12/2033')
+        disabled_coupon = Coupon.create!(code: 'ABC0001', promotion: promotion, status: :disabled)
+        enabled_coupon = Coupon.create!(code: 'ABC0002', promotion: promotion, status: :enabled)
+
+        visit root_path
+        click_on 'Promoções'
+        click_on promotion.name
+
+        expect(page).to have_content('Cupom ABC0001 - Desativado')
+        expect(page).to have_content('Cupom ABC0002 - Ativo')
+
+        within("div#coupon-#{enabled_coupon.id}") do
+          expect(page).to have_link 'Desativar'
+        end
+
+        within("div#coupon-#{disabled_coupon.id}") do
+          expect(page).not_to have_link 'Desativar'
+        end
+
     end
 end
