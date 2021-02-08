@@ -9,13 +9,13 @@ feature 'Admin disables coupon' do
   end
   scenario 'successfully' do
     user = User.create!(email: 'julia@dev.com', password: '123456')
-
     login_as user, scope: :user
+
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
     code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-    expiration_date: '22/12/2033')
+    expiration_date: '22/12/2033', user: user)
     coupon = Coupon.create!(code: 'ABC0001', promotion: promotion)
-
+    
     visit root_path
     click_on 'Promoções'
     click_on promotion.name 
@@ -27,14 +27,15 @@ feature 'Admin disables coupon' do
     
   end
   scenario 'Does not see button' do
+    user = User.create!(email: 'julia@dev.com', password: '123456')
+    login_as user, scope: :user
+
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
     code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-    expiration_date: '22/12/2033')
+    expiration_date: '22/12/2033', user: user)
     disabled_coupon = Coupon.create!(code: 'ABC0001', promotion: promotion, status: :disabled)
     enabled_coupon = Coupon.create!(code: 'ABC0002', promotion: promotion, status: :enabled)
-    user = User.create!(email: 'julia@dev.com', password: '123456')
 
-    login_as user, scope: :user
     visit root_path
     click_on 'Promoções'
     click_on promotion.name

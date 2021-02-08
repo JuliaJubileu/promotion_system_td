@@ -22,6 +22,7 @@
 <dt>Cadastrada por</dt>
 <dd><%= @promotion.user.email %></dd>
 </dl>
+<%= link_to 'Editar Promoção', edit_promotion_path(@promotion) %>
 
 <%= link_to 'Gerar cupons', generate_coupons_promotion_path(@promotion), method: :post %>
 

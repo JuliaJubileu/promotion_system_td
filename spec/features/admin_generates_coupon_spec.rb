@@ -9,12 +9,13 @@ feature 'Admin generates coupons' do
   end
   
   scenario 'of a promotion' do
+    user = User.create!(email: 'julia@dev.com', password: '123456')
+    login_as user, scope: :user
+
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
-    user = User.create!(email: 'julia@dev.com', password: '123456')
+                      expiration_date: '22/12/2033', user: user)
 
-    login_as user, scope: :user
     visit root_path
     click_on 'Promoções'
     click_on promotion.name

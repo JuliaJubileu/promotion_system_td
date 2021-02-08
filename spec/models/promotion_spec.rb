@@ -7,13 +7,14 @@ describe Promotion do
       promotion = Promotion.new
 
       expect(promotion.valid?).to eq false
-      expect(promotion.errors.count).to eq 5
+      expect(promotion.errors.count).to eq 6
     end
 
     it 'description is optional' do
+      user = User.create!(email: 'julia@dev.com', password: '123456')
       promotion = Promotion.new(name: 'Natal', description: '', code: 'NAT',
                                 coupon_quantity: 10, discount_rate: 10,
-                                expiration_date: '2021-10-10')
+                                expiration_date: '2021-10-10', user: user)
 
       expect(promotion.valid?).to eq true
     end
@@ -34,9 +35,10 @@ describe Promotion do
     end
 
     it 'code must be uniq' do
+      user = User.create!(email: 'julia@dev.com', password: '123456')
       Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                         code: 'NATAL10', discount_rate: 10,
-                        coupon_quantity: 100, expiration_date: '22/12/2033')
+                        coupon_quantity: 100, expiration_date: '22/12/2033', user: user)
       promotion = Promotion.new(code: 'NATAL10')
 
       promotion.valid?
@@ -46,9 +48,10 @@ describe Promotion do
   end
   context 'generate_coupons!' do
     it 'generate coupons of coupon_quantity' do
+    user = User.create!(email: 'julia@dev.com', password: '123456')
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                   code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                                  expiration_date: '22/12/2033')
+                                  expiration_date: '22/12/2033', user: user)
 
     promotion.generate_coupons!
 
@@ -61,9 +64,10 @@ describe Promotion do
     end
 
     it 'do not generate if error' do
+    user = User.create!(email: 'julia@dev.com', password: '123456')
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                   code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                                  expiration_date: '22/12/2033')
+                                  expiration_date: '22/12/2033', user: user)
     promotion.coupons.create!(code: 'NATAL10-0030')
 
     expect(promotion.coupons.reload.size).to eq(1)
