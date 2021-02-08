@@ -15,6 +15,7 @@ class PromotionsController < ApplicationController
 
   def create
    @promotion = Promotion.new(promotion_params)
+   @promotion.user = current_user
    if @promotion.save
      redirect_to @promotion
    else

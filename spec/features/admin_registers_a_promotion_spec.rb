@@ -9,7 +9,7 @@ feature 'Admin registers a promotion' do
   end
   
   scenario 'from index page' do
-    user = User.create!(email: 'julia@treinadev.com', password: '123456')
+    user = User.create!(email: 'julia@dev.com', password: '123456')
 
     login_as user, scope: :user
     visit root_path
@@ -20,7 +20,7 @@ feature 'Admin registers a promotion' do
   end
 
   scenario 'successfully' do
-    user = User.create!(email: 'julia@treinadev.com', password: '123456')
+    user = User.create!(email: 'julia@dev.com', password: '123456')
 
     login_as user, scope: :user
     visit root_path
@@ -42,6 +42,7 @@ feature 'Admin registers a promotion' do
     expect(page).to have_content('CYBER15')
     expect(page).to have_content('22/12/2033')
     expect(page).to have_content('90')
+    expect(page).to have_content('Cadastrada por julia@dev.com')
     expect(page).to have_link('Voltar')
   end
 end

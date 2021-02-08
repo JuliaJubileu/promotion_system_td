@@ -8,7 +8,7 @@ feature 'Admin disables coupon' do
     expect(current_path).to eq new_user_session_path
   end
   scenario 'successfully' do
-    user = User.create!(email: 'julia@treinadev.com', password: '123456')
+    user = User.create!(email: 'julia@dev.com', password: '123456')
 
     login_as user, scope: :user
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
@@ -32,7 +32,7 @@ feature 'Admin disables coupon' do
     expiration_date: '22/12/2033')
     disabled_coupon = Coupon.create!(code: 'ABC0001', promotion: promotion, status: :disabled)
     enabled_coupon = Coupon.create!(code: 'ABC0002', promotion: promotion, status: :enabled)
-    user = User.create!(email: 'julia@treinadev.com', password: '123456')
+    user = User.create!(email: 'julia@dev.com', password: '123456')
 
     login_as user, scope: :user
     visit root_path
