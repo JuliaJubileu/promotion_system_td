@@ -1,28 +1,24 @@
+<p><%= link_to 'Registrar uma promoção', new_promotion_path %></p>
+
 <% if @promotions.empty? %>
-  <%= 'Nenhuma promoção cadastrada' %>
+  <p>Nenhuma promoção cadastrada</p>
 <% else %>
   <% @promotions.each do |promotion| %>
     <dl>
       <dt> Nome: </dt>
-      <dd> <%= link_to promotion.name, promotion %> </dd>
-
+        <dd> <%= link_to promotion.name, promotion %> </dd>
       <dt> Descrição: </dt>
-      <dd> <%= promotion.description %> </dd>
-      
+        <dd> <%= promotion.description %> </dd>
       <dt> Código: </dt>
-      <dd> <%= promotion.code %> </dd>
-      
+        <dd> <%= promotion.code %> </dd>
       <dt> Desconto: </dt>
-      <dd> <%= number_to_percentage(promotion.discount_rate, precision: 2, separator: ',') %> </dd>
-      
+        <dd> <%= number_to_percentage(promotion.discount_rate, precision: 2, separator: ',') %> </dd>
       <dt> Quantidade de cupons: </dt>
-      <dd> <%= promotion.coupon_quantity %> </dd>
-      
+        <dd> <%= promotion.coupon_quantity %> </dd>
       <dt> Data de término: </dt>
-      <dd> <%= promotion.expiration_date %> </dd>
+        <dd> <%= promotion.expiration_date %> </dd>
     </dl>
   <% end %>
 <% end %>
 
-<%= link_to 'Registrar uma promoção', new_promotion_path %>
-<%= link_to 'Voltar', root_path %>
+<p><%= link_to 'Voltar', root_path %></p>
