@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_174820) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0, null: false
+    t.index ["code"], name: "index_coupons_on_code", unique: true
     t.index ["promotion_id"], name: "index_coupons_on_promotion_id"
   end
 
