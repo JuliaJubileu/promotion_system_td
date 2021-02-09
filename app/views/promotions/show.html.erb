@@ -21,6 +21,12 @@
     <dd><%= @promotion.coupon_quantity %></dd>
   <dt>Cadastrada por</dt>
     <dd><%= @promotion.user.email %></dd>
+  <% if @promotion.approved? %>
+  <dt>Status:</dt>
+    <dd>Aprovada</dd>
+  <% else %> 
+    <dt>Aguardando Aprovação</dt>
+  <% end %>
 </dl>
 
 <p> 
@@ -28,11 +34,16 @@
   <%= link_to 'Deletar Promoção', promotion_path, method: :delete %> 
 </p>
 
-<p>
+<span>
+<% if current_user != @promotion.user %>
+  <%= link_to 'Aprovar Promoção', approve_promotion_path, method: :post %>
+<% end %>
+</span>
+<span>
   <% unless @promotion.coupons.any? %>
     <%= link_to 'Gerar cupons', generate_coupons_promotion_path(@promotion), method: :post %>
   <% end %>
-</p> 
+</span> 
 
 <% @promotion.coupons.each do |coupon| %>
   <div id="coupon-<%= coupon.id %>"> 
