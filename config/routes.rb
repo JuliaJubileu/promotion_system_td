@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root 'home#index'
-  get 'search', to: "home#search"
+  root to: 'home#index'
+  
   devise_for :users
+
+  get 'search', to: "home#search"
 
   resources :categories
 
