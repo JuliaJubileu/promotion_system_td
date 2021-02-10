@@ -14,11 +14,12 @@
     <nav>
       <% if user_signed_in? %>
         <%= current_user.email %>
-        <%= link_to 'Sair', destroy_user_session_path, method: :delete  %>
+        <p><%= link_to 'Sair', destroy_user_session_path, method: :delete %></p>
       <% else %>
-        <%= link_to 'Entrar', new_user_session_path %>
+        <p><%= link_to 'Entrar', new_user_session_path %></p>
       <% end %>
     </nav>
+    
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
