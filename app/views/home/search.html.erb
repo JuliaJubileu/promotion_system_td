@@ -1,6 +1,14 @@
 <h1>Resultados da busca</h1>
-<ul>
-  <% @promotions.each do |promotion| %>
-    <li><%= promotion.name %>, <%= promotion.code %></li>
+
+<dl>
+  <% if @promotions.empty? %>
+    <p>Nenhuma promoção encontrada</p>
+  <% else %>
+    <% @promotions.each do |promotion| %>
+      <dt><%= promotion.name %>, <%= promotion.code %></dt>
+      <dd><%= link_to promotion_path(promotion), 'Ver detalhes' %></dd>
+    <% end %>
   <% end %>
-</ul>
+</dl>
+
+<p><%= link_to 'Voltar', root_path %></p>
