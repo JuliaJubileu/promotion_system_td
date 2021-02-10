@@ -21,21 +21,12 @@
     <dd><%= @promotion.coupon_quantity %></dd>
   <dt>Cadastrada por</dt>
     <dd><%= @promotion.user.email %></dd>
-<<<<<<< HEAD
     <% if @promotion.approved? %>
     <dt>Status:</dt>
       <dd>Aprovada</dd>
     <% else %> 
       <dt>Aguardando Aprovação</dt>
     <% end %> 
-=======
-  <% if @promotion.approved? %>
-  <dt>Status:</dt>
-    <dd>Aprovada</dd>
-  <% else %> 
-    <dt>Aguardando Aprovação</dt>
-  <% end %>
->>>>>>> af97c791456378dc41b8fec153ac32d908243764
 </dl>
 
 <% if current_user != @promotion.user %>
@@ -44,16 +35,9 @@
 <span><%= link_to 'Editar Promoção', edit_promotion_path(@promotion) %> |
 <%= link_to 'Deletar Promoção', promotion_path, method: :delete %></span>
 
-<span>
-<% if current_user != @promotion.user %>
-  <%= link_to 'Aprovar Promoção', approve_promotion_path, method: :post %>
-<% end %>
-</span>
-<span>
   <% unless @promotion.coupons.any? %>
-    <%= link_to 'Gerar cupons', generate_coupons_promotion_path(@promotion), method: :post %>
+    <span><%= link_to 'Gerar cupons', generate_coupons_promotion_path(@promotion), method: :post %></span> 
   <% end %>
-</span> 
 
 <% @promotion.coupons.each do |coupon| %>
   <div id="coupon-<%= coupon.id %>"> 
