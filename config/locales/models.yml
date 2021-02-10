@@ -1,6 +1,9 @@
 pt-BR:
   activerecord:
     models:
+      category: 
+        one: Categoria
+        other: Categories
       promotion: 
         one: Promoção
         other: Promoções
@@ -8,6 +11,9 @@ pt-BR:
         one: Usuário
         other: Usuários
     attributes:
+      category: 
+        name: "Nome"
+        code: "Código"
       promotion:
         name: "Nome"
         code: "Código"

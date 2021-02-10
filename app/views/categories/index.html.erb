@@ -1,0 +1,16 @@
+<p><%= link_to 'Registrar uma categoria', new_category_path %></p>
+
+<% if @categories.empty? %>
+  <p>Nenhuma categoria cadastrada</p>
+<% else %>
+  <% @categories.each do |category| %>
+    <dl>
+      <dt> Nome: </dt>
+        <dd> <%= link_to category.name, category %> </dd>
+      <dt> Código: </dt>
+        <dd> <%= category.code %> </dd>
+    </dl>
+  <% end %>
+<% end %>
+
+<p><%= link_to 'Voltar', root_path %></p>

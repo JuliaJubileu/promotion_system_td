@@ -57,7 +57,7 @@ class PromotionsController < ApplicationController
     redirect_to promotion
   end
 
-    private
+  private
   def promotion_params
     params.require(:promotion).permit(:name, :description, :code, 
                                        :discount_rate, :coupon_quantity, 

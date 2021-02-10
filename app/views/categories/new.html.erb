@@ -1,0 +1,15 @@
+<h1>Nova Categoria</h1>
+
+<% if @category.errors.any? %>
+  <div class="alert">
+    <p>Não foi possível criar a categoria</p>
+    <p>Confira os erros abaixo:</p>
+    <ul>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= render "form", category: @category %>

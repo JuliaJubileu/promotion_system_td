@@ -1,0 +1,15 @@
+<h1>Editar Categoria</h1>
+
+<% if @category.errors.any? %>
+  <div class="alert">
+    <p>Não foi possível editar a Categoria</p>
+    <p>Confira os erros abaixo:</p>
+    <ul>
+      <% @category.errors.full_messages.each do |m| %>
+        <li><%= m %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= render "form", category: @category %>

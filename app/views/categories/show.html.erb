@@ -1,0 +1,16 @@
+<% if flash[:notice] %>
+  <div>
+    <p><%= flash[:notice] %></p>
+  </div>
+<% end %>
+
+<p><%= link_to 'Voltar', categories_path %></p>
+
+<h1><%= @category.name %></h1>
+
+<dl>
+  <dt>Código</dt>
+    <dd><%= @category.code %></dd>
+</dl>
+
+<span><%= link_to 'Editar Categoria', edit_category_path(@category) %></span>
