@@ -39,4 +39,8 @@ RSpec.describe PromotionApproval, type: :model do
       end
     end
   end
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> af97c791456378dc41b8fec153ac32d908243764
