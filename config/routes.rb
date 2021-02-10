@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'home#index'
-  resources :promotions do
-    post 'generate_coupons', on: :member
+
+  devise_for :users
+
+  resources :promotions do	  
+    member do 
+      post 'generate_coupons'
+      post 'approve'
+    end
   end
-  resources :coupons, only: [] do
+
+  resources :coupons, only: [] do	  
     post 'disable', on: :member
   end
 end

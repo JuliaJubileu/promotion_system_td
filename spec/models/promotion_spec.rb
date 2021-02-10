@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Promotion do
-
   context 'validation' do
     it 'attributes cannot be blank' do
       promotion = Promotion.new
@@ -71,6 +70,33 @@ describe Promotion do
     promotion.coupons.create!(code: 'NATAL10-0030')
 
     expect(promotion.coupons.reload.size).to eq(1)
+    end
+  end
+  context 'approve!' do
+    it 'should generate PromotionApproval object' do 
+      creator = User.create!(email: 'julia@dev.com', password: '123456')
+      promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+      expiration_date: '22/12/2033', user: creator)
+      approver = User.create!(email: 'joao@dev.com', password: 'fAk3pA55w0rD')
+
+      promotion.approve!(approver)
+      
+      promotion.reload
+      expect(promotion.approved?).to be_truthy
+      expect(promotion.approver).to eq(approver)
+    end
+    it 'should not be the same user' do
+      creator = User.create!(email: 'julia@dev.com', password: '123456')
+      promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+      expiration_date: '22/12/2033', user: creator)
+      approver = User.create!(email: 'joao@dev.com', password: 'fAk3pA55w0rD')
+
+      promotion.approve!(creator)
+      
+      promotion.reload
+      expect(promotion.approved?).to be_falsy
     end
   end
 end

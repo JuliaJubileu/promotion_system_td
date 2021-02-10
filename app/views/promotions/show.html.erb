@@ -21,12 +21,19 @@
     <dd><%= @promotion.coupon_quantity %></dd>
   <dt>Cadastrada por</dt>
     <dd><%= @promotion.user.email %></dd>
+    <% if @promotion.approved? %>
+    <dt>Status:</dt>
+      <dd>Aprovada</dd>
+    <% else %> 
+      <dt>Aguardando Aprovação</dt>
+    <% end %> 
 </dl>
 
-<p> 
-  <%= link_to 'Editar Promoção', edit_promotion_path(@promotion) %> |
-  <%= link_to 'Deletar Promoção', promotion_path, method: :delete %> 
-</p>
+<% if current_user != @promotion.user %>
+<span><%= link_to 'Aprovar Promoção', approve_promotion_path, method: :post %></span>
+<% end %>
+<span><%= link_to 'Editar Promoção', edit_promotion_path(@promotion) %> |
+<%= link_to 'Deletar Promoção', promotion_path, method: :delete %></span>
 
 <p>
   <% unless @promotion.coupons.any? %>
