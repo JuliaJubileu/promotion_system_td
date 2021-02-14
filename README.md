@@ -1,24 +1,18 @@
-# README
+# PROMOTION SYSTEM
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Projeto realizado durante o programa TreinaDev como base para discussões sobre boas práticas de desenvolvimento, metodologias ágeis, TDD, etc. 
 
-Things you may want to cover:
+Trata-se uma uma aplicação web desenvolvida em Ruby on Rails onde um usuário pode visualizar, cadastrar e gerenciar cupons de desconto atrelados a promoções. 
 
-* Ruby version
+## Tecnologias e ferramentas: 
 
-* System dependencies
+* Ruby, v.2.72
+* Ruby on Rails, v.6.1
+* RSpec
+* Capybara
+* Devise
+* i18n
 
-* Configuration
+## Status: 
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Projeto em desenvolvimento. 
